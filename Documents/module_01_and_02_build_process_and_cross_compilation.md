@@ -170,6 +170,7 @@ $ nm -C sensor_statistics.o | grep telemetry
 0000000000000000 T telemetry::mean(std::vector<double, std::allocator<double> > const&)
 0000000000000103 T telemetry::peak(std::vector<double, std::allocator<double> > const&)
 ```
+The nm utility is a command-line tool in Linux used to dump and inspect symbol tables from binary files, including object files (.o), static library archives (.a), and shared objects or executables (.so, ELF binaries).
 
 The encoded form is the mangled name. Reading `_ZN9telemetry4meanERKSt6vectorIdSaIdEE` from left to right: `_Z` marks a mangled C++ name, `N ... E` brackets a nested name whose parts are given as length-prefixed strings (`9telemetry`, then `4mean`), and the rest encodes the single parameter, a reference to a const `std::vector<double, std::allocator<double>>`. The `-C` option asks `nm` to demangle, and the standalone `c++filt` tool will demangle any name you paste into it. Because the parameter types are part of the symbol, changing a parameter from `int` to `long` in a header and rebuilding only some of the files gives you an undefined reference rather than silent corruption, which is a feature.
 
