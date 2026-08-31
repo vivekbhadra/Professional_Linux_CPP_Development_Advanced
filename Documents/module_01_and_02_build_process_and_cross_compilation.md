@@ -156,9 +156,10 @@ telemetry_report_main.cpp:(.text+0xfa): undefined reference to `telemetry::mean(
 collect2: error: ld returned 1 exit status
 ```
 
-This message says something quite precise: main contains a reference to a symbol that no input file defines. It compiled perfectly well, because the header promised the function existed. The promise was never kept. Read the message as a statement about missing inputs to the link command, not as a statement about your source code, and you will fix it much faster.
-
-C++ allows overloading, so the function name alone cannot identify a function, and the compiler encodes the namespace, the name and the parameter types into a single symbol string. We can see both forms side by side. 
+* Undefined Symbol Error: The linker failed because main calls a function that lacks a corresponding definition in any provided input file.
+* Header vs. Linker Contract: The source code compiled successfully because the header promised the function existed, but that promise was broken at the link stage.
+* Linker Diagnosis Strategy: Interpret the error message as a missing file or library in your link command rather than a defect in the source code syntax.
+* Name Mangling Mechanism: To support function overloading, the compiler combines the namespace, function name, and parameter types into a single encoded symbol string.
 
 ```
 $ nm sensor_statistics.o | grep telemetry
