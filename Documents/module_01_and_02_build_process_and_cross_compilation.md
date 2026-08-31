@@ -2,9 +2,9 @@
 
 ## Why we start here
 
-Every remaining module in this course rests on this one. Cross-compilation only makes sense once you know which tool produces which artifact. CMake is a program that writes and runs the very commands you are about to type by hand. The MQTT and HTTP modules link your code against libraries that somebody else built, and when that link step fails, the error message will be about symbols, archives and search paths. Reading the output of `nm` and `readelf` is therefore a routine part of the job rather than a specialist skill.
+This module is the foundation of every other module in this course. You only get to cross-compiling when you know which tool produces which artefact. CMake is a program that generates and runs the same commands you would otherwise type by hand. The MQTT and HTTP modules link your code to libraries written by other people. If that linking step fails, an error message will be about symbols, archives and search paths. So, reading the output of nm and readelf is a routine part of the job, not a special skill.
 
-The plan is simple. We take a small application, build it manually one stage at a time, look at what each stage produced, and then package part of it as a static library and again as a shared library. Along the way we deliberately break the build twice, because the two failures you are going to see are the two failures you will meet most often in real work.
+The plan is easy. We take a small application, build it manually stage by stage, see what each stage has produced, and then package part of it as a static library and then as a shared library. We intentionally break the build twice along the way, because the two failures you will see are the two failures you are most likely to encounter in real work.
 
 ## The application we will build
 
