@@ -231,6 +231,12 @@ libsensorstats.so.1.0.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV),
 
 `-fPIC` asks the compiler to generate position independent code, which reaches its globals through an indirection table instead of through absolute addresses, so the library works wherever the loader decides to map it. On x86-64 you cannot build a shared library without it. The `-soname` recorded in the library is the name the loader will ask for later, and it carries only the major version, which is the whole versioning scheme in one line: the three names are the real file, the interface version that programs bind to, and the development symlink that `-lsensorstats` resolves.
 
+* g++ -std=c++17 -fPIC -c sensor_statistics.cpp -o sensor_statistics_pic.o: Compiles the source file into a relocatable object file using C++17 standards and position-independent code (-fPIC) required for shared libraries.
+* g++ -shared -Wl,-soname,libsensorstats.so.1 -o libsensorstats.so.1.0.0 sensor_statistics_pic.o: Links the position-independent object file into a shared library named libsensorstats.so.1.0.0 while embedding libsensorstats.so.1 as its internal ABI runtime name.
+* ln -sf libsensorstats.so.1.0.0 libsensorstats.so.1: Creates a symbolic link pointing the ABI major version name (libsensorstats.so.1) to the actual shared library release file.
+* ln -sf libsensorstats.so.1 libsensorstats.so: Creates a development symbolic link (libsensorstats.so) pointing to the ABI version link so the compiler can locate the library via -lsensorstats.
+* file libsensorstats.so.1.0.0: Inspects the dynamic binary artifact to confirm its ELF format, architecture, dynamically linked status, and symbol availability.
+
 Linking against it succeeds, and then running it does not.
 
 ```
