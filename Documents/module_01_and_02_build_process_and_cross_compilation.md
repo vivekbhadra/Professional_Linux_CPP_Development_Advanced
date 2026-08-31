@@ -8,7 +8,7 @@ The plan is easy. We take a small application, build it manually stage by stage,
 
 ## The application we will build
 
-The program computes a couple of summary values over a set of sensor readings. It is deliberately small, but it is split across three files, which is the whole point: a single-file program never teaches you anything about linking. The same code carries forward into the CMake modules later in the course.
+The program calculates a couple of summary values on a set of sensor readings. It is deliberately small, but it is split into three files, which is the whole point: a single file program never teaches you anything about linking. The same code is propagated into CMake modules later in the course.
 
 **Example 1.1: The interface of the sensor statistics library (`sensor_statistics.h`)**
 
