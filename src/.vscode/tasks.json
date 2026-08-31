@@ -1,0 +1,189 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure",
+            "type": "process",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Build",
+            "type": "process",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--parallel"
+            ],
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CMake: Test",
+            "type": "process",
+            "command": "ctest",
+            "args": [
+                "--test-dir",
+                "${workspaceFolder}/build",
+                "--output-on-failure"
+            ],
+            "dependsOn": "CMake: Build",
+            "problemMatcher": []
+        },
+        {
+            "label": "C++: Format active file",
+            "type": "process",
+            "command": "clang-format",
+            "args": [
+                "-i",
+                "-style=file",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true,
+                "echo": true,
+                "focus": false,
+                "panel": "shared",
+                "reveal": "silent"
+            },
+            "detail": "Format the active source file using the workspace .clang-format configuration."
+        },
+        {
+            "label": "C++: Format entire source tree",
+            "type": "process",
+            "command": "find",
+            "args": [
+                "${workspaceFolder}",
+                "-type",
+                "f",
+                "(",
+                "-name",
+                "*.c",
+                "-o",
+                "-name",
+                "*.cc",
+                "-o",
+                "-name",
+                "*.cpp",
+                "-o",
+                "-name",
+                "*.cxx",
+                "-o",
+                "-name",
+                "*.h",
+                "-o",
+                "-name",
+                "*.hh",
+                "-o",
+                "-name",
+                "*.hpp",
+                "-o",
+                "-name",
+                "*.hxx",
+                ")",
+                "-not",
+                "-path",
+                "${workspaceFolder}/build/*",
+                "-not",
+                "-path",
+                "${workspaceFolder}/third_party/*",
+                "-not",
+                "-path",
+                "${workspaceFolder}/external/*",
+                "-exec",
+                "clang-format",
+                "-i",
+                "-style=file",
+                "{}",
+                "+"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true,
+                "echo": true,
+                "focus": false,
+                "panel": "shared",
+                "reveal": "silent"
+            },
+            "detail": "Recursively format all project-owned C and C++ files."
+        },
+        {
+            "label": "C++: Check entire source tree formatting",
+            "type": "process",
+            "command": "find",
+            "args": [
+                "${workspaceFolder}",
+                "-type",
+                "f",
+                "(",
+                "-name",
+                "*.c",
+                "-o",
+                "-name",
+                "*.cc",
+                "-o",
+                "-name",
+                "*.cpp",
+                "-o",
+                "-name",
+                "*.cxx",
+                "-o",
+                "-name",
+                "*.h",
+                "-o",
+                "-name",
+                "*.hh",
+                "-o",
+                "-name",
+                "*.hpp",
+                "-o",
+                "-name",
+                "*.hxx",
+                ")",
+                "-not",
+                "-path",
+                "${workspaceFolder}/build/*",
+                "-not",
+                "-path",
+                "${workspaceFolder}/third_party/*",
+                "-not",
+                "-path",
+                "${workspaceFolder}/external/*",
+                "-exec",
+                "clang-format",
+                "--dry-run",
+                "--Werror",
+                "-style=file",
+                "{}",
+                "+"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Check formatting without modifying any source files."
+        }
+    ]
+}
