@@ -156,9 +156,9 @@ telemetry_report_main.cpp:(.text+0xfa): undefined reference to `telemetry::mean(
 collect2: error: ld returned 1 exit status
 ```
 
-This message says something quite precise: `main` contains a reference to a symbol that no input file defines. It compiled perfectly well, because the header promised the function existed. The promise was never kept. Read the message as a statement about missing inputs to the link command, not as a statement about your source code, and you will fix it much faster.
+This message is telling you something very specific. main is a symbol for which no input file defines a definition. It compiled fine because the header promised the function existed. The promise was never fulfilled. Read the message as a statement about missing inputs to the link command, not as a statement about your source code, and you'll fix it much faster.
 
-The full signature in the message is not decoration. C++ allows overloading, so the function name alone cannot identify a function, and the compiler encodes the namespace, the name and the parameter types into a single symbol string. We can see both forms side by side.
+The full signature in the message is not a decoration. C++ supports overloading so the function name alone cannot identify a function and the compiler encodes the namespace, the name and the parameter types into a single symbol string. We can observe both forms together.
 
 ```
 $ nm sensor_statistics.o | grep telemetry
