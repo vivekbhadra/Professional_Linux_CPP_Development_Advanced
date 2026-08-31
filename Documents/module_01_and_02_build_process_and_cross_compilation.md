@@ -101,7 +101,7 @@ $ wc -l sensor_statistics.ii
 38129 sensor_statistics.ii
 ```
 
-The 33 lines of Example 1.2 became 38,129 lines. The preprocessor replaced each `#include` with the full text of the named file, recursively, expanded macros, and evaluated the conditional directives. GCC uses the extension `.ii` for preprocessed C++ and `.i` for preprocessed C. What comes out is the translation unit, and the translation unit, not your `.cpp` file, is what the compiler actually reads. This is why a missing `#include` in a header can break a source file that does not mention that header at all, and why compile times grow with the size of your header set rather than the size of your source.
+The 33 lines of Example 1.2 became 38,129 lines. The preprocessor replaced each `#include` with the full text of the named file, recursively, expanded macros, and evaluated the conditional directives. GCC uses the extension `.ii` for preprocessed C++ and `.i` for preprocessed C. What comes out is the translation unit, and the translation unit is what the compiler actually reads. This is why a missing `#include` in a header can break a source file that does not mention that header at all, and why compile times grow with the size of your header set rather than the size of your source.
 
 C++20 modules change this model: an imported module is consumed as a compiled artifact rather than re-parsed as text, which removes the repeated preprocessing cost and the include-order fragility that comes with it. GCC 13 implements modules only partially and requires `-fmodules-ts`, so production builds on Linux are still overwhelmingly header based. We will keep to headers throughout this course.
 
