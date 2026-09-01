@@ -7,10 +7,10 @@ int main()
     int a = 10;
     int b = 5;
 
-    std::cout << "Addition: " << add(a, b) << std::endl;
-    std::cout << "Subtraction: " << subtract(a, b) << std::endl;
-    std::cout << "Multiplication: " << multiply(a, b) << std::endl;
-    std::cout << "Division: " << divide(a, b) << std::endl;
+    std::cout << "Addition: " << add(a, b) << "\n";
+    std::cout << "Subtraction: " << subtract(a, b) << "\n";
+    std::cout << "Multiplication: " << multiply(a, b) << "\n";
+    std::cout << "Division: " << divide(a, b) << "\n";
 
     return 0;
 }
