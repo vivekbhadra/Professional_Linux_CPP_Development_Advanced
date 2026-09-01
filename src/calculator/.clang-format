@@ -1,0 +1,56 @@
+---
+Language: Cpp
+BasedOnStyle: Microsoft
+Standard: Latest
+
+# Indentation
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+ConstructorInitializerIndentWidth: 4
+AccessModifierOffset: -4
+NamespaceIndentation: None
+
+# Templates
+BreakTemplateDeclarations: Yes
+
+# Line length and wrapping
+ColumnLimit: 100
+BinPackArguments: false
+BinPackParameters: false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AlignAfterOpenBracket: Align
+BreakConstructorInitializers: BeforeColon
+
+# Braces and short statements
+BreakBeforeBraces: Allman
+Cpp11BracedListStyle: true
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+
+# Pointers, references and expressions
+DerivePointerAlignment: false
+PointerAlignment: Left
+ReferenceAlignment: Left
+SpaceBeforeParens: ControlStatements
+BreakBeforeBinaryOperators: NonAssignment
+
+# Includes and comments
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+FixNamespaceComments: true
+ReflowComments: true
+
+# Keep manually arranged tables and consecutive declarations readable.
+AlignConsecutiveAssignments: None
+AlignConsecutiveDeclarations: None
+AlignConsecutiveMacros: None
+
+PackConstructorInitializers: Never
+AllowAllConstructorInitializersOnNextLine: false
+...
