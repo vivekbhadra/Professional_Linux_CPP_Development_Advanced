@@ -10,5 +10,6 @@
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
         "editor.formatOnSave": true
-    }
+    },
+    "cmake.sourceDirectory": "/home/vbhadra/Professional_Linux_CPP_Development_Advanced/src/module_03_cmake_fundamentals"
 }
